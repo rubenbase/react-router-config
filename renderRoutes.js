@@ -20,6 +20,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var renderRoutes = function renderRoutes(routes) {
   var extraProps = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var authRender = false;
   return routes ? _react2.default.createElement(
     _Switch2.default,
     null,
@@ -30,8 +31,9 @@ var renderRoutes = function renderRoutes(routes) {
         exact: route.exact,
         strict: route.strict,
         render: function render(props) {
-          if(typeof route['requireAuth'] != 'undefined' ) {
-            return route['requireAuth']();
+          if(typeof route['requireAuth'] != 'undefined' 
+          && ( authRender = route['requireAuth']() ) ) {
+            return authRender();
           }
           return _react2.default.createElement(route.component, _extends({}, props, extraProps, { route: route }));
         }
