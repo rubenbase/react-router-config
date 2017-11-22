@@ -24,13 +24,15 @@ var renderRoutes = function renderRoutes(routes) {
     _Switch2.default,
     null,
     routes.map(function (route, i) {
-      console.log('react router config');
       return _react2.default.createElement(_Route2.default, {
         key: route.key || i,
         path: route.path,
         exact: route.exact,
         strict: route.strict,
         render: function render(props) {
+          if(typeof route['requireAuth'] != 'undefined' ) {
+            return route['requireAuth']();
+          }
           return _react2.default.createElement(route.component, _extends({}, props, extraProps, { route: route }));
         }
       });
