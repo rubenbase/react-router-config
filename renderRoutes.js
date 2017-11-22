@@ -33,7 +33,7 @@ var renderRoutes = function renderRoutes(routes) {
         render: function render(props) {
           if(typeof route['requireAuth'] != 'undefined' 
           && ( authRender = route['requireAuth']() ) ) {
-            return authRender();
+            return authRender;
           }
           return _react2.default.createElement(route.component, _extends({}, props, extraProps, { route: route }));
         }
