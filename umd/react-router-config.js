@@ -61,6 +61,10 @@ var renderRoutes = function renderRoutes(routes) {
         exact: route.exact,
         strict: route.strict,
         render: function render(props) {
+          if(typeof route['requireAuth'] == 'function' 
+          && ( authRender = route['requireAuth'](route.path) ) ) {
+            return authRender;
+          }
           return React.createElement(route.component, _extends({}, props, extraProps, { route: route }));
         }
       });
