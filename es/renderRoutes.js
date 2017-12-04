@@ -6,6 +6,7 @@ import Route from 'react-router/Route';
 
 var renderRoutes = function renderRoutes(routes) {
   var extraProps = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var authRender = false;  
   return routes ? React.createElement(
     Switch,
     null,
